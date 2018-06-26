@@ -4,7 +4,7 @@ Basic Game Time starter kit.
 
 ## Initial Setup
 
-One person from your project will sets up the repository. That one person should follow these steps:
+One person from your project will set up the repository. That one person should follow these steps:
 
 1. Clone this starter kit repository and rename the repository to `game-time` in one command
 
