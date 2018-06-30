@@ -1,6 +1,6 @@
 #game {
   border: none;
-  cursor: crosshair;
+  cursor: url(images/weapon-crosshair.png) 11 11, crosshair;
   margin: auto;
   display: block;
   background-color: #006666;
