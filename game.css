@@ -1,5 +1,15 @@
 #game {
-  border: 1px dashed;
+  border: none;
+  cursor: crosshair;
   margin: auto;
   display: block;
+  background-color: #006666;
+    /* For WebKit (Safari, Chrome, etc) */
+    background: #006666 -webkit-gradient(linear, left top, left bottom, from(#002266), to(#006666)) no-repeat;
+    /* Mozilla,Firefox/Gecko */
+    background: #006666 -moz-linear-gradient(top, #002266, #006666) no-repeat;
+    /* IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#002266, endColorstr=#006666) no-repeat;
+    /* IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#002266, endColorstr=#002266)" no-repeat;
 }
