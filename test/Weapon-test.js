@@ -1,5 +1,6 @@
 const { assert } = require('chai');
 const Weapon = require('../lib/Weapon.js');
+const Target = require('../lib/Target.js');
 
 describe('Weapon', function () {
   let weapon;
@@ -17,28 +18,38 @@ describe('Weapon', function () {
       color: 'rgb(0, 200, 0',
       dx: 0,
       dv: 0.5,
-      p1: {x:100, y:100},
-      p2: {x:200, y:200},
+      p1: {x: 100, y: 100},
+      p2: {x: 200, y: 200},
       speed: 1
     }
+
     assert.deepEqual(expectedWeapon, weapon); 
   });
 
-  it.skip('should be able to fire()', function() {
-    const missiles = [missile]; //available missiles
-    weapon.fire();
-    //create
+  it.skip('should be able to fire() at target', function() {
+    var missiles = [missile]; //available missiles
+    var target = new Target()
+
+    weapon.fire(target);
+
+    assert
+    
   });
 
-  it.skip('fire() should not work if no missiles', function() {
-    const missiles = [missile, missile, missile];
-    weapon.fire();
+  it.skip('', function() {
+    // const missiles = [missile, missile, missile];
+    
+    // weapon.fire();
 
   });
 
-  it('should be able to explode()', function() {
+  it('', function() {
     assert.equal(weapon.explode(), true)
     
+  });
+
+  it.skip('', function () {
+
   });
 
   it.skip('', function () {
