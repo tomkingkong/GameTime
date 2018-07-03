@@ -1,7 +1,7 @@
 #game {
   border: none;
   cursor: url(images/weapon-crosshair.png) 11 11, crosshair;
-  margin: auto;
+  margin: 1rem auto;
   display: block;
   background-color: #006666;
     /* For WebKit (Safari, Chrome, etc) */
@@ -14,12 +14,22 @@
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#002266, endColorstr=#002266)" no-repeat;
 }
 
+.game-bar {
+  font-family: sans-serif;
+  margin: 0 auto;
+  width: 12rem;
+}
+
+.start-game {
+  font-size: 2rem;
+}
+
 .debug {
-  position: absolute;
-  float: right;
+  /* display: none; */
+  float: left;
   top: 0;
   width: 14em;
-  margin: 1rem;
+  margin: 2rem;
   padding: 1rem;
 }
 
