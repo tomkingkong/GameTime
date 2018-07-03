@@ -26,6 +26,7 @@
 
 .debug {
   /* display: none; */
+  position: absolute;
   float: left;
   top: 0;
   width: 14em;
