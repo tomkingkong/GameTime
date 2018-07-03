@@ -6,7 +6,7 @@ describe('Weapon', function () {
   let weapon;
 
   beforeEach(() => {
-    weapon = new Weapon (50, 50, 10, 10, 'rgb(0, 200, 0', 0, 1, 1, {x:100, y:100}, {x:200, y:200}, 1)
+    weapon = new Weapon (50, 50, 10, 10, 'rgb(0, 200, 0)', 0, 1, 1, {x:100, y:100}, {x:200, y:200}, 1)
   });
 
   it('should have properties', function () {
@@ -15,7 +15,7 @@ describe('Weapon', function () {
       y: 50,
       width: 10,
       height: 10,
-      color: 'rgb(0, 200, 0',
+      color: 'rgb(0, 200, 0)',
       dx: 0,
       dv: 0.5,
       p1: {x: 100, y: 100},

@@ -24,6 +24,7 @@
         "after": true
       }
     ],
+    "semi": ["error", "always"],
     "indent": [
       "error",
       2
@@ -46,7 +47,7 @@
     ],
     "max-len": [
       "error",
-      80
+      800
     ],
     "new-cap": [
       "error", {
