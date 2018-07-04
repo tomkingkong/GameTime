@@ -1,3 +1,18 @@
+body {
+  background-color: #006666;
+    /* For WebKit (Safari, Chrome, etc) */
+    background: #006666 -webkit-gradient(linear, left top, left bottom, from(#002266), to(#006666)) no-repeat;
+    /* Mozilla,Firefox/Gecko */
+    background: #006666 -moz-linear-gradient(top, #002266, #006666) no-repeat;
+    /* IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#002266, endColorstr=#006666) no-repeat;
+    /* IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#002266, endColorstr=#002266)" no-repeat;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
 #game {
   border: none;
   cursor: url(images/weapon-crosshair.png) 11 11, crosshair;
@@ -14,22 +29,46 @@
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#002266, endColorstr=#002266)" no-repeat;
 }
 
-.game-bar {
-  font-family: sans-serif;
-  margin: 0 auto;
-  width: 12rem;
+div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  margin-top: 19.5rem;
+  position: absolute;
+  width: 100%;
 }
 
 .start-game {
+  border: none;
+  border-radius: 0.2rem;
+  background-color: transparent;
+  cursor: pointer;
+  color: white;
+  margin-bottom: 4rem;
   font-size: 2rem;
+  height: 3rem;
+  width: 14rem;
+}
+
+.start-game:hover {
+  color: rgba(15, 111, 175, 1);
+  background-color: transparent;
 }
 
 .highscore {
   display: none;
+  font-size: 2rem;
+  z-index: 10;
+}
+
+.highscore input {
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 .debug {
-  /* display: none; */
+  display: none;
   position: absolute;
   float: left;
   top: 0;
