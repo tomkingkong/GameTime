@@ -16,7 +16,7 @@ body {
 #game {
   border: none;
   cursor: url(images/weapon-crosshair.png) 11 11, crosshair;
-  margin: 1rem auto;
+  margin: 0 auto;
   display: block;
   background-color: #006666;
     /* For WebKit (Safari, Chrome, etc) */
