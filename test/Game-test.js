@@ -51,8 +51,28 @@ describe('Game', function () {
     assert.deepEqual(game.enemyMissiles.length, 5);
   });
   
-  it.skip('Game should ', function () {
-     
+  it('Game should end if enemey missiles destroy all player cities', function () {
+    game.newGame();
+
+    assert.deepEqual(game.cities.length, 6);
+    
+    game.enemyShoot();
+    game.enemyShoot();
+    game.enemyShoot();
+    game.enemyShoot();
+    game.enemyShoot();
+
+    game.enemyMissiles.forEach(missile => { 
+      for (var i = 0; i < 2500; i++) {
+        missile.move();
+        game.explosionDetection(game.cities);
+      }
+    });
+    if (game.cities.length <= 0) {
+      game.isGameOver = true;
+    }
+
+    assert.equal(game.isGameOver, true);
   });
   
   it.skip('Game should', function () {
