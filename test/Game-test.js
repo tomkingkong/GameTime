@@ -57,13 +57,9 @@ describe('Game', function () {
 
     assert.deepEqual(game.cities.length, 6);
     
-    game.enemyShoot();
-    game.enemyShoot();
-    game.enemyShoot();
-    game.enemyShoot();
-    game.enemyShoot();
-    game.enemyShoot();
-    game.enemyShoot();
+    for (var i = 0; i < 7; i++) {
+      game.enemyShoot();
+    }
 
     game.enemyMissiles.forEach(missile => { 
       for (var i = 0; i < 2500; i++) {
