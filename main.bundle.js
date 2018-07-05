@@ -286,7 +286,7 @@ module.exports = function () {
       ctx.fillStyle = 'rgb(255, 255, 255)';
       ctx.fillText('level: ' + this.lvl, 30, 28);
       ctx.fillText('score: ' + this.score, 120, 28);
-      // ctx.fillText('high score: ' + this.highScore.playerName + ' | ' + this.highScore.score, 320, 28);
+      ctx.fillText('high score: ' + this.highScore[playerName] + ' | ' + this.highScore[score], 320, 28);
     }
   }, {
     key: 'generateTerrain',
