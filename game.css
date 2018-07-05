@@ -65,6 +65,7 @@ div {
 .highscore input {
   font-size: 1.5rem;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .debug {
