@@ -26,7 +26,8 @@ describe('Game', function () {
       playerMissileCount: 30,
       isGameOver: false,
       score: 0,
-      highScore: {playerName: 'TCK', level: 1, score: 0}
+      highScore: {playerName: 'TCK', level: 1, score: 0},
+      paused: false
     };
 
     assert.deepEqual(expectedGame, game);
@@ -61,6 +62,8 @@ describe('Game', function () {
     game.enemyShoot();
     game.enemyShoot();
     game.enemyShoot();
+    game.enemyShoot();
+    game.enemyShoot();
 
     game.enemyMissiles.forEach(missile => { 
       for (var i = 0; i < 2500; i++) {
@@ -71,20 +74,15 @@ describe('Game', function () {
     if (game.cities.length <= 0) {
       game.isGameOver = true;
     }
-
+    
     assert.equal(game.isGameOver, true);
   });
   
-  it.skip('Game should', function () {
-     
-  });
-  
-  it.skip('Game should', function () {
-     
-  });
-  
-  it.skip('Game should', function () {
-     
+  it('Game should let player defend themselves with missiles', function () {
+    // game.shoot(event);
+
+    console.log(game.playerMissileCount)
+
   });
 
 });
