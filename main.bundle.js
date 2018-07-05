@@ -229,7 +229,7 @@ module.exports = function () {
       ctx.fillStyle = 'rgb(255, 0, 0)';
       ctx.font = '48px serif';
 
-      if (this.highScore.score < this.score) {
+      if (this.highScore[score] < this.score) {
         ctx.fillText('HIGH SCORE!', 150, 300);
         input.style.display = "block";
       } else if (this.score !== 0) {
