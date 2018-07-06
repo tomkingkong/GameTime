@@ -1,5 +1,6 @@
 const { assert } = require('chai');
 const Weapon = require('../lib/Weapon.js');
+const Game = require('../lib/Game.js')
 
 describe('Weapon', function () {
   let missile;
@@ -84,4 +85,12 @@ describe('Weapon', function () {
     missile.draw(context);
     assert.equal(context.fillStyle, 'rgb(0, 200, 200)');
   });
+
+  it('should explode', function() {
+    const game = new Game();
+
+    missile.explode(game);
+
+    assert.deepEqual(game.explosions.length, 1);
+  })
 });

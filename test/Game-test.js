@@ -80,6 +80,61 @@ describe('Game', function () {
 
     assert.deepEqual(game.enemyMissiles.length, 5);
   });
+
+  it('should let player defend themselves with missiles', function () {
+    let event = {layerX: 300, layerY: 500};
+
+    game.newGame();
+
+    assert.equal(game.playerMissileCount, 30);
+
+    game.shoot(event);
+    game.shoot(event);
+    game.shoot(event);
+
+    assert.equal(game.playerMissileCount, 27);
+  });
+
+  it('should find the correct battery to shoot from', function() {
+    let event;
+
+    game.newGame();
+
+    event = {layerX: 420, layerY: 500};
+    
+    game.findBattery(event);
+
+    assert.deepEqual(game.findBattery(event), { x: 570, y: 490 }); //battery 3 position
+    
+    event = {layerX: 220, layerY: 500};
+    
+    game.findBattery(event);
+
+    assert.deepEqual(game.findBattery(event), { x: 300, y: 490 }); //battery 2 position
+    
+    event = {layerX: 80, layerY: 500};
+    
+    game.findBattery(event);
+
+    assert.deepEqual(game.findBattery(event), { x: 30, y: 490 }); //battery 1 position
+
+  });
+
+  it('should loop through draw and animate methods', function() {
+    let highScoreInput = 'BOB';
+    let start;
+
+    game.gameLoop(highScoreInput, start, context);
+
+    assert.exists(game.gameLoop);
+  });
+
+  it('should detect if enemy missiles hit explosions and cause more explosions', function() {
+    game.newGame();
+
+    game.explosionDetection(game.enemyMissiles);
+
+  });
   
   it('should end if enemey missiles destroy all player cities', function () {
     game.newGame();
@@ -106,63 +161,7 @@ describe('Game', function () {
 
     assert.equal(game.isGameOver, true);
   });
-  
-  it('should let player defend themselves with missiles', function () {
-    let event = {layerX: 300, layerY: 500};
 
-    game.newGame();
-
-    assert.equal(game.playerMissileCount, 30);
-
-    game.shoot(event);
-    game.shoot(event);
-    game.shoot(event);
-
-    assert.equal(game.playerMissileCount, 27);
-  });
-
-  it('should loop through draw and animate methods', function() {
-    let highScoreInput = 'BOB';
-    let start;
-
-    game.gameLoop(highScoreInput, start, context);
-
-    assert.exists(game.gameLoop);
-  });
-  
-  it.skip('should detect if enemy missiles hit explosions and cause more explosions', function() {
-    game.newGame();
-    game.explosionDetection(game.enemyMissiles);
-
-    //game.explode(missile);
-    //assert
-  });
-  
-  it('should find the correct battery to shoot from', function() {
-    let event;
-
-    game.newGame();
-
-    event = {layerX: 420, layerY: 500};
-    
-    game.findBattery(event);
-
-    assert.deepEqual(game.findBattery(event), { x: 570, y: 490 }); //battery 3 position
-    
-    event = {layerX: 220, layerY: 500};
-    
-    game.findBattery(event);
-
-    assert.deepEqual(game.findBattery(event), { x: 300, y: 490 }); //battery 2 position
-    
-    event = {layerX: 80, layerY: 500};
-    
-    game.findBattery(event);
-
-    assert.deepEqual(game.findBattery(event), { x: 30, y: 490 }); //battery 1 position
-
-  });
-  
   it('should run Game Over routine when player dies', function() {
     let input = {style: {display: 'none'}};
     let button = {style: {display: 'none'}};
@@ -170,14 +169,15 @@ describe('Game', function () {
     game.score = 1;
     game.handleGameOver(context, input, button);
 
-    assert.equal(context.fillText(), 'THE END');
-
+    assert.equal(context.fillStyle, 'rgb(255, 0, 0)');
   });
 
-  it.skip('should display text to the screen', function() {
-    game.drawText();
+  it('should display text to the screen', function() {
+    game.newGame();
 
+    game.drawText(context);
 
+    assert.equal(context.fillStyle, 'rgb(255, 255, 255)');
   });
   
   it('should pause and unpause the game', function() {
