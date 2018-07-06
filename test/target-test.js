@@ -10,21 +10,13 @@ describe('Target', function () {
       this.fillStyle = "#000000";
     }
 
-    beginPath() {
-
-    }
-
-    arc() {
-
-    }
-
-    fill() {
-
-    }
-
-    closePath(){
-
-    }
+    beginPath() {}
+    arc() {}
+    fill() {}
+    closePath() {}
+    fillRect() {}
+    fillText() {}
+    rect() {}
   }
 
   beforeEach(() => {
@@ -39,9 +31,10 @@ describe('Target', function () {
 
   it('should be drawn to the canvas', function() {
     const target = new Target();
+    target.isExplosion = true;
 
     target.draw(context);
-    assert.deepEqual(ctx.fillStyle, '#000000');
+    assert.equal(context.fillStyle, 'rgb(255, 100, 0)');
   });
 
 });

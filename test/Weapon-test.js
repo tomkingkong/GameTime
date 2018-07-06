@@ -9,6 +9,13 @@ describe('Weapon', function () {
       this.canvas = "#game";
       this.fillStyle = "#000000";
     }
+    beginPath() {}
+    arc() {}
+    fill() {}
+    closePath() {}
+    fillRect() {}
+    fillText() {}
+    rect() {}
   }
 
   beforeEach(() => {
@@ -71,11 +78,10 @@ describe('Weapon', function () {
     assert.deepEqual(missile.tail[1].x, missile.x - 3);
 
     assert.deepEqual(missile.tail.length, 2);
-
   });
 
   it('should be drawn to the canvas', function() {
     missile.draw(context);
-    assert.deepEqual(ctx.fillStyle, '#000000');
+    assert.equal(context.fillStyle, 'rgb(0, 200, 200)');
   });
 });
