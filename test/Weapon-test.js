@@ -4,8 +4,20 @@ const Weapon = require('../lib/Weapon.js');
 describe('Weapon', function () {
   let missile;
 
+  class Context {
+    constructor() {
+      this.canvas = "#game";
+      this.fillStyle = "#000000";
+    }
+  }
+
   beforeEach(() => {
     missile = new Weapon(300, 490, 5, 5, 'rgb(0, 200, 200)', 0, 0, 0.5, {x: 300, y: 490}, { x: 30, y: 10}, 10, true);
+    context = new Context();  
+  });
+
+  it('should exist', function() {
+    assert.exists(missile);
   });
 
   it('should have properties', function () {
@@ -60,5 +72,10 @@ describe('Weapon', function () {
 
     assert.deepEqual(missile.tail.length, 2);
 
+  });
+
+  it('should be drawn to the canvas', function() {
+    missile.draw(context);
+    assert.deepEqual(ctx.fillStyle, '#000000');
   });
 });

@@ -2,6 +2,24 @@ const { assert } = require('chai');
 const GamePiece = require('../lib/GamePiece.js');
 
 describe('GamePiece', function () {
+
+  class Context {
+    constructor() {
+      this.canvas = "#game";
+      this.fillStyle = "#000000";
+    }
+  }
+
+  beforeEach(() => {
+    context = new Context();  
+  });
+
+  it('should exist', function() {
+    const gamePiece = new GamePiece();
+
+    assert.exists(gamePiece);
+  });
+
   it('should have properties', function () {
     const gamePiece = new GamePiece(50, 50, 10, 10, 'rgb(250, 0, 0)', 1, 1, 0.5);
 
