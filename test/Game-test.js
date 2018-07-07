@@ -32,14 +32,14 @@ describe('Game', function () {
 
   it('should store all the things', function () {
     var expectedGame = {
-      missiles: [],
+      playerMissiles: [],
       enemyMissiles: [],
       targets: [],
       explosions: [],
       cities: [],
       batteries: [],
-      lvl: 1,
-      enemyWeaponCount: 5,
+      level: 1,
+      enemyWeaponCount: 10,
       playerMissileCount: 0,
       isGameOver: false,
       score: 0,
@@ -74,11 +74,11 @@ describe('Game', function () {
   });
   
   it('should shoot a volley of enemy missiles at player upon new game or level', function () {
-    assert.deepEqual(game.enemyMissiles.length, 0);
+    assert.equal(game.enemyMissiles.length, 0);
 
     game.enemyShoot();
 
-    assert.deepEqual(game.enemyMissiles.length, 5);
+    assert.equal(game.enemyMissiles.length, 10);
   });
 
   it('should let player defend themselves with missiles', function () {
@@ -88,9 +88,9 @@ describe('Game', function () {
 
     assert.equal(game.playerMissileCount, 30);
 
-    game.shoot(event);
-    game.shoot(event);
-    game.shoot(event);
+    game.playerShoot(event);
+    game.playerShoot(event);
+    game.playerShoot(event);
 
     assert.equal(game.playerMissileCount, 27);
   });
@@ -124,16 +124,78 @@ describe('Game', function () {
     let highScoreInput = 'BOB';
     let start;
 
+    game.newGame();
+    game.enemyMissiles.length = 0;
+
+    assert.equal(game.level, 1);
+
     game.gameLoop(highScoreInput, start, context);
 
-    assert.exists(game.gameLoop);
+    assert.equal(game.level, 2);
   });
 
-  it('should detect if enemy missiles hit explosions and cause more explosions', function() {
+  it('should detect if missiles reach their target, and explode', function() {
     game.newGame();
 
-    game.explosionDetection(game.enemyMissiles);
+    game.enemyShoot();
 
+    assert.equal(game.explosions.length, 0);    
+
+    game.enemyMissiles.forEach(missile => { 
+      for (var i = 0; i < 2100; i++) {
+        missile.move();
+        game.objectiveDetection(game.enemyMissiles);
+      }
+    });
+
+    assert.equal(game.explosions.length, 10);    
+  });
+
+  it('should allow enemy missiles to explode if they collide with explosions', function() {
+    let event = {layerX: 300, layerY: 500};
+    
+    game.newGame();
+
+    game.enemyShoot();
+
+    game.playerShoot(event);
+
+    game.enemyMissiles.forEach(missile => { 
+      for (var i = 0; i < 2000; i++) {
+        missile.move();
+        game.explosionDetection(game.cities);
+      }
+    });
+
+  });
+
+  it('should detect weapon collision on player cities and batteries', function() {
+    assert.equal(game.enemyMissiles.length, 0);
+    
+    game.newGame();
+
+    game.enemyShoot();
+    game.enemyShoot();
+    game.enemyShoot();
+    game.enemyShoot();
+
+    assert.equal(game.enemyMissiles.length, 50);
+
+    game.enemyMissiles.forEach(missile => { 
+      for (var i = 0; i < 1800; i++) {
+        missile.move();
+        game.explosionDetection(game.cities);
+        game.explosionDetection(game.batteries);
+      }
+    });
+   
+    /*  
+    enemyShoot() is random
+    This test will fail on occassion 
+    */
+
+    assert.equal(game.cities.length, 0);
+    assert.equal(game.batteries.length, 0);
   });
   
   it('should end if enemey missiles destroy all player cities', function () {
@@ -141,15 +203,16 @@ describe('Game', function () {
 
     assert.deepEqual(game.cities.length, 6);
 
-    for (var i = 0; i < 4; i++) {
-      game.enemyShoot();
-    }
+    game.enemyShoot();
+    game.enemyShoot();
 
-    //Enemy Fire is random
-    //This test will fail if a city is not targeted
+    /*  
+    enemyShoot() is random
+    This test will fail on occassion 
+    */
 
     game.enemyMissiles.forEach(missile => { 
-      for (var i = 0; i < 1500; i++) {
+      for (var i = 0; i < 1800; i++) {
         missile.move();
         game.explosionDetection(game.cities);
       }
