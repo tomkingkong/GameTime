@@ -1,23 +1,11 @@
 const { assert } = require('chai');
 const Weapon = require('../lib/Weapon.js');
 const Game = require('../lib/Game.js')
+const Context = require('../lib/Context.js');
 
 describe('Weapon', function () {
   let missile;
-
-  class Context {
-    constructor() {
-      this.canvas = "#game";
-      this.fillStyle = "#000000";
-    }
-    beginPath() {}
-    arc() {}
-    fill() {}
-    closePath() {}
-    fillRect() {}
-    fillText() {}
-    rect() {}
-  }
+  let context;
 
   beforeEach(() => {
     missile = new Weapon(300, 490, 5, 5, 'rgb(0, 200, 200)', 0, 0, 0.5, {x: 300, y: 490}, { x: 30, y: 10}, 10, true);

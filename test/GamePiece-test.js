@@ -1,15 +1,10 @@
 const { assert } = require('chai');
 const GamePiece = require('../lib/GamePiece.js');
+const Context = require('../lib/Context.js');
 
 describe('GamePiece', function () {
-
-  class Context {
-    constructor() {
-      this.canvas = "#game";
-      this.fillStyle = "#000000";
-    }
-  }
-
+  let context;
+  
   beforeEach(() => {
     context = new Context();  
   });

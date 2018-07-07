@@ -1,23 +1,9 @@
 const { assert } = require('chai');
+const Context = require('../lib/Context.js');
 const Target = require('../lib/Target.js');
 
 describe('Target', function () {
   let context;
-
-  class Context {
-    constructor() {
-      this.canvas = "#game";
-      this.fillStyle = "#000000";
-    }
-
-    beginPath() {}
-    arc() {}
-    fill() {}
-    closePath() {}
-    fillRect() {}
-    fillText() {}
-    rect() {}
-  }
 
   beforeEach(() => {
    context = new Context();

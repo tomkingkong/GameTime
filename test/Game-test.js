@@ -2,24 +2,11 @@ const { assert } = require('chai');
 const Game = require('../lib/Game.js');
 const Battery = require('../lib/Battery.js');
 const Target = require('../lib/Target.js');
+const Context = require('../lib/Context.js');
  
 describe('Game', function () {
   let game;
-
-  class Context {
-    constructor() {
-      this.canvas = "#game";
-      this.fillStyle = "#000000";
-    }
-
-    beginPath() {}
-    arc() {}
-    fill() {}
-    closePath() {}
-    fillRect() {}
-    fillText() {}
-    rect() {}
-  }
+  let context;
 
   beforeEach(() => {
     game = new Game();
@@ -31,7 +18,7 @@ describe('Game', function () {
     assert.exists(game);
   });
 
-  it('should store all the things', function () {
+  it('should set instance properties', function () {
     var expectedGame = {
       playerMissiles: [],
       enemyMissiles: [],
@@ -148,8 +135,17 @@ describe('Game', function () {
     assert.equal(game.level, 1);
 
     game.gameLoop(highScoreInput, start, context);
+    
+    assert.equal(context.fillStyle, 'rgb(255, 255, 255)');
 
     assert.equal(game.level, 2);
+
+    game.cities.length = 0;
+    game.enemyMissiles.length = 0;
+
+    game.gameLoop(highScoreInput, start, context);
+
+    assert.equal(game.isGameOver, true);
   });
 
   it('should detect if missiles reach their target, and explode', function() {
