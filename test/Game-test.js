@@ -15,6 +15,8 @@ describe('Game', function () {
   });
 
   it('should exist', function () {
+    game = new Game();
+
     assert.exists(game);
   });
 
