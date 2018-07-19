@@ -62,6 +62,12 @@ div {
   z-index: 10;
 }
 
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.5em;
+  color: orangered;
+}
+
 .highscore input {
   font-size: 1.5rem;
   text-align: center;
